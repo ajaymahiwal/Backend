@@ -1,0 +1,26 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "description": "Learn Express.js With These Excellent Notes.I think this is perfect for a begginear to Start Express.js.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajaymahiwal/express.js"
+  },
+  "keywords": [
+    "Express.js",
+    "express"
+  ],
+  "author": "Ajay Mahiwal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ajaymahiwal/express/issues"
+  },
+  "homepage": "https://github.com/ajaymahiwal/express#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
