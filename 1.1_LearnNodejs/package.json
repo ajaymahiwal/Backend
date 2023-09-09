@@ -1,0 +1,15 @@
+{
+  "name": "learnnodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ajay",
+  "license": "ISC",
+  "type":"module"
+
+}
+
+  // FOR using import we have to add this line in package.json of app.js directory
