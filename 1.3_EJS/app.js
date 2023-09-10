@@ -18,11 +18,19 @@ app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"/viewsss"));
 
 
+const data = "<script>alert('Hello, World!');</script>";
+
+// Using <%= ... %>
+console.log(`<%= data %>`); // This will execute the script
+
+// Using <%- ... %>
+console.log(`<%- data %>`); // This will display the script as text
 
 
 // ROUTES 
 app.get("/",(req,res)=>{
-    res.send("<h1>Welcome dude, in Home Page.</h1>");
+    // res.send("<h1>Welcome dude, in Home Page.</h1>");
+    res.render("home",{data});
 });
 
 app.get("/help",(req,res)=>{
