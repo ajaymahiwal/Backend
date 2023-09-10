@@ -7,7 +7,7 @@ const app = express();
 
 
 
-//ENDpoints
+//ENDpoints (route)
 app.get("/",(req,res)=>{
     console.log("Home Page");
     res.send("<h1>Instagram Home Page</h1>");
@@ -41,7 +41,7 @@ app.get("/:username",(req,res)=>{
 
 
 
-//Route
+//Starting the Server
 app.listen(3000,(req,res)=>{
     console.log("Server is Running On Port 3000");
 })

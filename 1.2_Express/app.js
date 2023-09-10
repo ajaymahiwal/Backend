@@ -14,7 +14,7 @@ const port = 3000;
 });
  */
 
-// Endpoints
+// Endpoints (Route)
 app.get("/",(req,res)=>{
     res.send("<h1>I am At Home Page</h1>");
 });
@@ -36,7 +36,7 @@ app.get("*",(req,res)=>{
 });
 
 
-//Route
+//Starting the Server
 app.listen(port,()=>{
     console.log(`Server started on port ${port}`);
 });
