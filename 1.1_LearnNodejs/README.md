@@ -1,4 +1,4 @@
-```markdown
+
 # Node.js Beginner's Guide
 
 Welcome to the Node.js Beginner's Guide! This guide will help you get started with Node.js and cover essential concepts.
@@ -109,7 +109,6 @@ console.log(add(3, 4)); // Outputs: 7
 Node.js is a powerful runtime for building server-side applications. This guide covers essential concepts, including object usage, npm, modules, package management, and project initialization, to help you get started with Node.js development.
 
 Happy coding!
-```
 
 
 

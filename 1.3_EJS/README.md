@@ -53,6 +53,13 @@ In Express, the views are stored in a directory, typically named "views." This d
 ### Using EJS for Views:
 When you use EJS as your template engine, you can embed JavaScript directly into your HTML templates. This makes it easy to inject dynamic data into your web pages. EJS uses special tags to execute JavaScript code within your HTML.
 
+    ```javascript
+    //Set the template engine as EJS
+    app.set("view engine","ejs");  
+    //Setting the ejs files folders name by default views to custom-folder-name (viewsss)
+    //and access EJS files from anywhere if server is starting outside the directory
+    app.set("views",path.join(__dirname,"/viewsss"));
+    ```
 ### Basic Example:
 Here's a basic example of how you might use EJS in Express.js:
 
