@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
     <style>
-        body{
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /*font-family:;*/
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
             background-color: rgba(137, 43, 226, 0.5);
             text-align: center;
         }
     </style>
 </head>
+
 <body>
-    <h1>Welcome to Home Page</h1>
-    <!-- <%- data %>  --> <!-- It Will Excute Code of data variable-->
-    <%= data %>   <!-- It Will Not Excute Code of data variable, it will treat it like Text-->
+    <%- include('header.ejs', { fact: 'I am here because of Home Page.' }) %>
+        <h1>Welcome to Home Page</h1>
+        <!-- <%- data %>  -->
+        <!-- It Will Excute Code of data variable-->
+        <%= data %>
+            <!-- It Will Not Excute Code of data variable, it will treat it like Text-->
 </body>
+
 </html>

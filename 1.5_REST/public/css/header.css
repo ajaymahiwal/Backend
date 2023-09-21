@@ -1,0 +1,20 @@
+
+header{
+    background-color: rgba(137, 43, 226, 0.582);
+    height: 5vw;
+    width: 100%;
+}
+header nav ul{ 
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+li{
+    list-style: none;
+}
+header a{
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 2vw;
+    color: white;
+}

@@ -162,6 +162,9 @@ app.get('/profile', (req, res) => {
 ```ejs
 <%- include('header.ejs', { pageTitle: 'Home Page' }) %>
 ```
+{ pageTitle: 'Home Page' }: This is an optional object that you can pass as a second argument to the include function. It allows you to pass data or variables to the included file. In this example, you're passing a variable called pageTitle with the value 'Home Page' to the 'header.ejs' file.
+
++ In short, use this method when you want to include a file and with some variables which you can use them in that file.
 
 These examples cover fundamental EJS syntax and code patterns that are commonly used in web development projects. EJS is known for its simplicity and compatibility with JavaScript, making it a convenient choice for dynamic content rendering.
 

@@ -1,0 +1,37 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+html , body{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    background-color: rgba(137, 43, 226, 0.582);
+}
+section{
+    overflow: hidden;
+    width: 100%;
+}
+h1{
+    text-align: center;
+    width: 100vw;
+    font-size: 5rem;
+}
+::selection{
+    background-color: floralwhite;
+}
+p{
+    border: 2px solid beige;
+    font-weight: 400;
+    /* min-height: 10vw; */
+    padding: 2rem;
+    font-size: 1.4vw;
+}
+h3{
+    margin-block: 2vw;
+    text-align: center;
+}

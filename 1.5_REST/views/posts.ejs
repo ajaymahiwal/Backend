@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .post {
+            min-height:10vw;
+            width: 100%;
+            margin-block: 1.5rem;
+            background-color:dodgerblue;
+            text-align: center;
+        }
+
+        .post-username {
+            text-decoration: none;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        .post-content{
+            width: 100%;
+            /* background-color: rgba(0, 255, 255, 0.582); */
+            font-weight:bolder;
+            color: white;
+            /* border-radius: 15px; */
+        }
+        #newPost{
+            text-decoration: none;
+            font-size: 3vw;
+        }
+        section{
+            width: 100%;
+            text-align: center;
+            border: 5px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include("header.ejs") %>
+
+        <main>
+            <%for(post of allPosts){%>
+                <div class="post">
+                    <a href="/user/<%=post.username%>" class="post-username">
+                        <%=post.username%>
+                    </a>
+                    <div class="post-content">
+                        <%=post.content%>
+                    </div>
+                </div>
+            <%}%>    
+
+            <section>
+                <a href="/posts/new" id="newPost">Write New Post</a>
+            </section>
+        </main>
+
+</body>
+
+</html>
