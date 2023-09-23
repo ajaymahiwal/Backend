@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posts</title>
+    <title>Document</title>
     <style>
         * {
             margin: 0;
@@ -51,37 +51,28 @@
             text-align: center;
             border: 5px solid black;
         }
-        .link-id{
-            display: block;
-            margin-top: 7px;
-            color: black;
-            font-size: 1.3rem;
+        h1{
+            margin-block: 4vw;
+            text-align: center;
+            border: 2px solid black;
+            padding: 10px;
         }
     </style>
 </head>
 
 <body>
-    <%- include("header.ejs") %>
-
-        <main>
-            <%for(post of allPosts){%>
-                <div class="post">
-                    <a href="/user/<%=post.username%>" class="post-username">
-                        <%=post.username%>
-                    </a>
-                    <div class="post-content">
-                        <%=post.content%>
-                    </div>
-                    <a href="/posts/<%=post.id%>" target="_blank" class="link-id"><%=post.id%></a>
-                    <a href="/posts/<%=post.id%>" target="_blank" class="link-id">See in Detail</a>
-                </div>
-            <%}%>    
-
-            <section>
-                <a href="/posts/new" id="newPost">Write New Post</a>
-            </section>
-        </main>
-
+    <h1>Here is Post in Detail</h1>
+    <div class="post">
+        <h3><%= post.id %></h3>
+        <a href="/user/<%=post.username%>" class="post-username">
+            <%=post.username%>
+        </a>
+        <div class="post-content">
+            <%=post.content%>
+        </div>
+    </div>
+    <script>
+    </script>
 </body>
 
 </html>

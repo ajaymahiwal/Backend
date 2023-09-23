@@ -4,6 +4,8 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
+const {v4: uuidv4 } = require("uuid");
+
 //setting 
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
@@ -15,15 +17,15 @@ app.use(express.json());
 
 
 let allPosts = [
-    {
+    {   id:uuidv4(),
         username:"ajaymahiwal5",
         content:"Discipline Makes you real Human Being. ~Ajay Mahiwal"
     },
-    {
+    {   id:uuidv4(),
         username:"amanmahiwal",
         content:"ccusantium voluptatum iste modi ad, maiores sunt, dolorem tempore. Illum temporibus soluta fugit sed corporis quis labore est ducimus facere eveniet. Corporis laudantium similique ducimus voluptatum quidem officiis incidunt porro ab aspernatur delectus quae omnis ipsam, voluptatem rem nisi error facere. Saepe quisquam neque, omnis velit modi distinctio ex natus nostrum commodi ab tempora. Temporibus, architecto! Nisi."
     },
-    {
+    {   id:uuidv4(),
         username:"raj007",
         content:"I got my 1st Internship with Google."
     }
@@ -41,19 +43,36 @@ app.get("/blogs",(req,res)=>{
 app.get("/help",(req,res)=>{
     res.send("Coming Soon.")
 });
+
+
 app.get("/posts/new",(req,res)=>{
     res.render("newPost");
 });
 app.post("/posts",(req,res)=>{
+    let id = uuidv4();
     let {username,content} = req.body;
-    allPosts.push({username,content});
+    allPosts.push({id,username,content});
     res.redirect("/posts");
 });
-app.patch("/posts/:id",(req,res)=>{
+app.get("/posts/:id",(req,res)=>{
     let postID = req.params.id;
-    // allPosts[postID].username = newUserName;
-    // allPosts[postID].content = newContent;
+    // console.log(postID);
+    let post = allPosts.find((p)=> postID === p.id);
+    // console.log(post);
+    // res.send("Request Working Fine.");
+    res.render("show.ejs",{post});
 });
+
+
+app.patch("/posts/:id",(req,res)=>{
+    let {id} = req.params;
+    console.log(id);
+    let newContent = req.body.content;
+    let post = allPosts.find((p)=> id === p.id);
+    post.content = newContent;
+    console.log(post);
+    res.send("Patch Request Working Fine.");
+})
 
 
 app.get("*",(req,res)=>{
