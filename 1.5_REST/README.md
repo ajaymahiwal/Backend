@@ -64,3 +64,12 @@ console.log(banana); // 'banana'
 In this example, we're searching for the fruit "banana" using the `findFruit` function. We specify the `thisArg` parameter as 'banana' to set the context (`this`) inside the callback.
 
 Remember that the `find` method stops as soon as it finds the first element that satisfies the condition. If you need to find all elements that match a condition, you might want to consider using `filter` instead.
+
+
+
+## Why we are using method-overidding package ?   <br> 
+
+👀 [method-overriding package](https://www.npmjs.com/package/method-override) <br>
+**Lets you use HTTP verbs such as PUT or DELETE in places where the client doesn't support it.**
+In forms or client side is not able to use method other than get or post But we have to use in our project where we want to edit or delete something.
+for that facilty we use it, using this package POST request method we can override into other method like PUT, PATCH, DELETE etc.

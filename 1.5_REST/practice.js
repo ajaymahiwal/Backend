@@ -1,4 +1,5 @@
-
+/**
+ 
 
 //Date 21-09-2023
 
@@ -22,3 +23,37 @@ app.get("/",(req,res)=>{
 app.listen(3000,(req,res)=>{
     console.log("server running very fine.");
 })
+ */
+
+
+
+const express = require("express");
+const app = express();
+const path = require("path");
+
+
+//Adding middlewares
+app.use(express.static(path.join(__dirname, "publiccc"))); // folder for static files
+app.use(express.urlencoded({extended:true})); // converting res.data 
+app.use(express.json()); // converting
+
+//Setting up project default setting
+app.set("view engine","ejs"); // setting view engine
+app.set("views",path.join(__dirname, "viewsss")); // folder path where these templates files will be stored
+
+
+
+//Routes (Endpoints)
+app.get("/",()=>{
+    // res.render();
+    // res.send("");
+});
+// .
+// .
+// .
+
+
+// Starting the server
+app.listen(3000,()=>{
+    console.log("server is starting.");
+});

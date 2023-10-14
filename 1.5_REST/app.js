@@ -3,6 +3,9 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+//Lets you use HTTP verbs such as PATCH or PUT or DELETE in places where the client doesn't support it.
+const methodOverride = require('method-override');
+
 
 const {v4: uuidv4 } = require("uuid");
 
@@ -14,6 +17,7 @@ app.set("views",path.join(__dirname,"views"));
 app.use(express.static(path.join(__dirname,"public")));
 app.use(express.urlencoded({ extended:false }));
 app.use(express.json());
+app.use(methodOverride('_method'));
 
 
 let allPosts = [
@@ -58,21 +62,39 @@ app.get("/posts/:id",(req,res)=>{
     let postID = req.params.id;
     // console.log(postID);
     let post = allPosts.find((p)=> postID === p.id);
+    if(post){
+        res.render("show.ejs",{post});
+    }else{
+        res.render("error");
+    }
     // console.log(post);
     // res.send("Request Working Fine.");
-    res.render("show.ejs",{post});
 });
 
 
 app.patch("/posts/:id",(req,res)=>{
     let {id} = req.params;
-    console.log(id);
+    // console.log(id);
     let newContent = req.body.content;
     let post = allPosts.find((p)=> id === p.id);
     post.content = newContent;
-    console.log(post);
-    res.send("Patch Request Working Fine.");
-})
+    // console.log(post);
+    // res.send("Patch Request Working Fine.");
+    res.redirect("/posts");
+});
+
+app.get("/posts/:id/edit",(req,res)=>{
+    let postID = req.params.id;
+    let post = allPosts.find((p)=> postID === p.id);
+    res.render("edit",{post});
+});
+
+app.delete("/posts/:id",(req,res)=>{
+    let postID = req.params.id;
+    allPosts = allPosts.filter((p)=> postID !== p.id);
+    // res.send("Deleted Successfully !");
+    res.redirect("/posts");
+});
 
 
 app.get("*",(req,res)=>{
