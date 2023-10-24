@@ -67,8 +67,8 @@ Remember that the `find` method stops as soon as it finds the first element that
 
 
 
-## Why we are using method-overidding package ?   <br> 
 
+## Why we are using method-overidding package ?   <br> 
 👀 [method-overriding package](https://www.npmjs.com/package/method-override) <br>
 **Lets you use HTTP verbs such as PUT or DELETE in places where the client doesn't support it.**
 In forms or client side is not able to use method other than get or post But we have to use in our project where we want to edit or delete something.
