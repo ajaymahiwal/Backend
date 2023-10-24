@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        span{
+            background-color: rgba(129, 45, 207, 0.815);
+        }
+
+        .main-user{
+            width: 100%;
+            text-align: center;
+            font-size: 7rem;
+        }
+        .user-info{
+            margin: 10% auto 0 auto;
+            width: 80%;
+        }
+        .user-info h1{
+            margin: 1rem 0 ;
+        }
+        .btn{
+            padding: 1rem 2.2rem;
+            font-size: 1.3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-user"><span><%= userDATA.username %></span>  </div>
+    <div class="user-info">
+        <h1> <span><%= userDATA.username %></span>  ID : <%= userDATA.id %></h1>
+    <h1>  <span><%= userDATA.username %></span>  Email ID : <%= userDATA.email %></h1>
+    </div>
+
+    <form method="post" action="/user/<%= userDATA.id %>/edit" id="validate-form">
+        Enter Password: <input type="text" name="password">
+        <button class="btn"> Edit Info Or Delete </button>
+    </form>
+    <form method="get" action="/user/new">
+        <button class="btn"> Add New User Info </button>
+    </form>
+    <script>
+    </script>
+</body>
+
+</html>

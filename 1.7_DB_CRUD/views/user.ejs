@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+        td{
+            padding: 1rem ;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <table border="">
+            <tr>
+                <td>S.No</td>
+                <td>ID</td>
+                <td>Username</td>
+                <td>Email</td>
+            </tr>
+    <% for( let index = 0; index < data.length; index++ ) { %>
+            <tr>
+                <td><%=index+1%></td>
+                <td> <a href="/user/<%=data[index].id%>">  <%=data[index].id%> </a></td>
+                <!-- <td> <a href="/user/<%=data[index].username%>">  <%=data[index].username%> </a></td>
+                <td> <a href="mailto:<%=data[index].email%>">  <%=data[index].email%> </a></td> -->
+                 <td>   <%=data[index].username%>   </td>
+                <td>    <%=data[index].email%>    </td> 
+            </tr>
+        <% } %>
+    </table>
+    <script>
+    </script>
+</body>
+
+</html>
