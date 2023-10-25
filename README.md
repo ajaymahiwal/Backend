@@ -7,4 +7,6 @@
 📖📚Read About [Miscellaneous Topics](./1.4_Miscellaneous/README.md)🚀    <br>
 📖📚Read About [OOPs Topics Code](./1.4_Miscellaneous/OOPs.js)🚀    <br>
 📖📚Read About [REST](./1.5_REST/README.md)🚀    <br>
+📖📚Read About [Database](./1.6_Database/README.md)🚀    <br>
+📖📚Read About [CRUD DB with REST](./1.7_DB_CRUD/README.md)🚀    <br>
 
