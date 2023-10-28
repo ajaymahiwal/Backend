@@ -27,12 +27,25 @@
             border-radius: 5px;
             padding: 1rem;
         }
+        .msg-section{
+            margin: 1rem 0;
+        }
         .msg{
             background-color: rgba(137, 154, 248, 0.5);
             padding: 1rem;
         }
         h1{
             text-align: center;
+        }
+
+        .edit{
+            display: inline-block;
+            margin: 1rem 0;
+            border:2px solid black;
+            text-decoration: none;
+            color: white;
+            background-color: blueviolet;
+            padding: 0.5rem 2rem;
         }
     </style>
 </head>
@@ -46,8 +59,17 @@
     <div class="chat">
         <p>Sender: <%= chat.from %></p>
         <p>Receiver: <%= chat.to %></p>
-        <div class="msg">Message: <%= chat.msg %></div>
-        <p>Sent At: <%= chat.created_at %></p>
+        <div class="msg-section">
+            <div class="msg">
+                Message: <%= chat.msg %>
+            </div>
+            <a href="/chats/<%= chat.id %>/edit" class="edit">Edit</a>
+            <form action="/chats/<%= chat.id %>?_method=DELETE" method="post">
+                <button>Delete</button>
+            </form>
+        </div>
+        <p><%= chat.created_at.toString().split(" ")[4] %></p>
+        <p><%= chat.created_at.toString().split(" ").slice(0,4).join("-") %></p>
     </div>
     
     <% } %>
