@@ -1,0 +1,18 @@
+In Mongoose, a schema defines the structure of documents in a MongoDB collection, while a model provides an interface for interacting with the database to create, read, update, and delete documents.
+A schema is an object that defines the properties of a document, their types, and their default values. It can also be used to define validators for ensuring that data is entered correctly.
+A model is a class that is created from a schema. It provides methods for interacting with the database, such as save(), find(), update(), and delete().
+Here is an example of a schema for a user document:
+const userSchema = new Schema({
+  name: String,
+  email: String,
+  password: String,
+  age: Number,
+});
+Use code with caution.
+Learn more
+And here is an example of a model for a user document:
+const User = mongoose.model('User', userSchema);
+Use code with caution.
+Learn more
+You can use the model() function to create a model from a schema. The first argument to the model() function is the name of the model, and the second argument is the schema.
+Once you have created a model, you can use it to interact with the database. For example, you can use the save() method to save a document to the database, and you can use the find() method to find documents in the database.
