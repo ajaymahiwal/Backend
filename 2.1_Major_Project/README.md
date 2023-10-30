@@ -28,11 +28,16 @@ item.price.toLocaleString("en-IN")
 **Phase-1 (part-b)**
 
 -EJS Mate
--
+Ak asa tarika jisme kuch files bna lete hai or un mein kush code likte hai fir  is trike se unse files mein add ker lete hai <% layout('/layouts/boilerplate') %>
+jis file mein ye line likh dege uska code is boilerplate.ejs file mein or is code : <%- body %> mein store hoga yani vo sara code us file ka ab is body naam k line mein refer hoga.
+BoilerPlate vali jo file bnai hai vo or bhi bna skate hai fir bus layout vale line code mein us file ka naam likh dege jo common code or as a boilerplate treat hona chata hai.
+Main or Sara control screen layout or code structure ka  boilerplate vali file k pass hoga.
 
+<!-- I Made a Video on this see in gallary -->
 
-
-
+-create navbar using bootstrap
+-link first into files and for icons i used font-awesome
+-create footer
 
 
 
