@@ -1,0 +1,27 @@
+{
+  "name": "wanderlust",
+  "version": "1.0.0",
+  "description": "WanderLust Project, Will help people to find hotels.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajaymahiwal/Backend.git"
+  },
+  "keywords": [],
+  "author": "Ajay Mahiwal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajaymahiwal/Backend/issues"
+  },
+  "homepage": "https://github.com/ajaymahiwal/Backend#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "ejs-mate": "^4.0.0",
+    "express": "^4.18.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^7.6.3"
+  }
+}
