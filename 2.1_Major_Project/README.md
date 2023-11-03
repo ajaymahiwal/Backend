@@ -6,40 +6,38 @@
 
 
 **Phase-1 (part-a)**
-
--npm init -y
--install express,ejs,mongoose
--create app.js & require installed packages
--start server app.listen();
--connect with DB 
+<br>
+-npm init -y<br>
+-install express,ejs,mongoose<br>
+-create app.js & require installed packages<br>
+-start server app.listen();<br>
+-connect with DB <br>
 ----
--require path and created public and views folder
--added middlewares and setup some setting related to view engine
--Create a Model for all Listings
--Insert Data in DB Create init folder and then insert.
+-require path and created public and views folder<br>
+-added middlewares and setup some setting related to view engine<br>
+-Create a Model for all Listings<br>
+-Insert Data in DB Create init folder and then insert.<br>
 
--create show all list items route
--create show one item route 
-item.price.toLocaleString("en-IN")
+-create show all list items route<br>
+-create show one item route <br>
+item.price.toLocaleString("en-IN")<br>
 
--Create edit and update route
--Create delete route
+-Create edit and update route<br>
+-Create delete route<br>
 -------------------------------------
 **Phase-1 (part-b)**
 
--EJS Mate
+-EJS Mate<br>
 Ak asa tarika jisme kuch files bna lete hai or un mein kush code likte hai fir  is trike se unse files mein add ker lete hai <% layout('/layouts/boilerplate') %>
 jis file mein ye line likh dege uska code is boilerplate.ejs file mein or is code : <%- body %> mein store hoga yani vo sara code us file ka ab is body naam k line mein refer hoga.
 BoilerPlate vali jo file bnai hai vo or bhi bna skate hai fir bus layout vale line code mein us file ka naam likh dege jo common code or as a boilerplate treat hona chata hai.
-Main or Sara control screen layout or code structure ka  boilerplate vali file k pass hoga.
+Main or Sara control screen layout or code structure ka  boilerplate vali file k pass hoga.<br>
 
 <!-- I Made a Video on this see in gallary -->
-
--create navbar using bootstrap
--link first into files and for icons i used font-awesome
--create footer
-
-
+<br>
+-create navbar using bootstrap<br>
+-link first into files and for icons i used font-awesome<br>
+-create footer<br>
 
 
 
@@ -52,6 +50,11 @@ Main or Sara control screen layout or code structure ka  boilerplate vali file k
 
 
 
+
+
+<br><br>
+
+# Doubts
 
 **Doubt Releted to set(v) function in mongoose**
 
