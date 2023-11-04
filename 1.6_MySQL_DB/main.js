@@ -84,7 +84,7 @@ connection.query(query,[users],(err, results, fields) => {
     console.log("Insertion Completed - Ajay Mahiwal");
 }
 );
-
+ 
  */
 
 

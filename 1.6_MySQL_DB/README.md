@@ -23,7 +23,7 @@ You can also access MySQL Command Line Client from Command Prompt. For this:
 1. Open Command Prompt.
 2. Navigate to the bin folder. For example: `cd C:\Program Files\MySQL\MySQL Server 8.0\bin`
 3. Run the `mysql -u root -p` command
-4. Enter the password.
+4. Enter the password. 
 
 
 When i was opening MySQL in VS Code Power Shell Then Facing Some Errors
@@ -43,5 +43,5 @@ For Quitting MySQL Just write `quit` .
 
 Example:
 `mysql> use delta_app;`
-`mysql> source E:\1LEARN HERE\#1 Course Videos\DELTA\Code\Backend\1.6_Database\schema.sql`
+`mysql> source E:\1LEARN HERE\#1 Course Videos\DELTA\Code\Backend\1.6_MySQL_DB\schema.sql`
 

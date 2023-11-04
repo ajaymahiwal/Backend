@@ -13,7 +13,7 @@ const { connect } = require("http2");
 const connection = mysql.createConnection({
     host: 'localhost',
     // host: '127.0.0.1',
-    user: 'root',
+    user: 'root',  
     database: 'university_app',
     password: "ajay",
     port:"3306",
