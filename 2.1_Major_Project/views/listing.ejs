@@ -61,15 +61,21 @@
             height: 17rem;
             object-fit: cover !important;
         }
-        .card-body{
-            padding: 0;
-        }
         .card-img-overlay{
+            /* border: 2px solid red; */
             background-color: white;
             opacity: 0;
+            /* height: 50%; */
         }
         .card-img-overlay:hover{
             opacity: .3;
+        }
+        .card-body{
+            padding-left: 1.5rem;
+            /* border: 2px solid blueviolet; */
+        }
+        .card-title{
+            width: 25ch;
         }
     </style>
     <link rel="stylesheet" href="/CSS/common.css">
@@ -90,14 +96,14 @@
                 <div class="card col">
                     <img class="card-img-top" src="<%= item.image.url %>" alt="Card image cap">
                     <div class="card-img-overlay"></div>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                          <%= item.title %>  
-                        </h5>
-                        <p class="card-text">
-                            &#8377;   <%= item.price.toLocaleString("en-IN") %> /night
-                        </p>
-                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                      <%= item.title %>
+                    </h5>
+                    <p class="card-text">
+                        &#8377;   <%= item.price.toLocaleString("en-IN") %> /night
+                    </p>
                 </div>
             </a>
             <% } %>

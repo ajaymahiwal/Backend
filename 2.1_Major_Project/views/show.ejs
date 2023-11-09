@@ -52,12 +52,38 @@
 
         .btn {
             display: inline-block;
-            background-color: blueviolet;
-            padding: 0.7rem 2.5rem;
+            background-color: rgba(241, 38, 38, 0.89);
+            padding: 0.5rem 2rem;
             font-size: 1.2rem;
             text-decoration: none;
             color: white;
             margin: 2rem 0;
+        }
+
+        .new-card{
+            margin: 0 auto;
+            width: 80%;
+        }
+        .new-card img{
+            width: 100%;
+            height: 70vh;
+            /* object-fit: fill; */
+            object-fit: cover;
+        }
+        .new-card h1{
+            padding: 0 1rem;
+        }
+        .main-btns{
+            display: flex;
+            justify-content: space-around;
+        }
+        @media(width<=600px){
+            .main-btns{
+                flex-direction: column;
+            }
+            .btn{
+                width: 100%;
+            }
         }
     </style>
          <link rel="stylesheet" href="/CSS/common.css">   
@@ -67,28 +93,29 @@
 <body>
     <%-include('./includes/navbar.ejs')%>
 
-        <h1>
-            <%= item.title %>
-        </h1>
 
-        <ul>
-            <li>
-                <%= item.description %>
-            </li>
-            <li> &#8377; <%= item.price.toLocaleString("en-IN")%>
-            </li>
-            <li>
-                <%= item.location %>
-            </li>
-            <li>
-                <%= item.country %>
-            </li>
-        </ul>
+        <div class="card new-card">
 
-        <a href="/listings/<%= item._id %>/edit" class="btn">Edit This Listing</a>
+            <img src="<%= item.image.url %>" class="card-img-top" alt="item-img">
+            <h1>
+                <%= item.title %>
+            </h1>
+            <div class="card-body">
+              <p class="card-text"> <%= item.description %> </p>
+              <p class="card-text"> <%= item.location %>, <%= item.country %></p>
+              <p class="card-text"> &#8377; <%= item.price.toLocaleString("en-IN")%> </p>
+            </div>
+          </div>
+
+        <div class="main-btns">
+            <a href="/listings/<%= item._id %>/edit" class="btn">Edit This Listing</a>
         <form action="/listings/<%= item.id %>?_method=DELETE" method="post">
             <button class="btn">Delete This Listing</button>
         </form>
+        </div>
+
+
+        <%-include('./includes/footer.ejs')%>
 
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

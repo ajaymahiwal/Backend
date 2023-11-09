@@ -29,6 +29,14 @@
         form input {
             width: 100%;
         }
+        form{
+            margin: 2rem 3rem;
+        }
+        .btn{
+            background-color: rgb(241, 75, 63) !important;
+            border: none;
+            padding-inline: 2rem;
+        }
     </style>
          <link rel="stylesheet" href="/CSS/common.css">   
 
@@ -41,27 +49,50 @@
         </h1>
 
         <form action="/listings/<%= item._id %>?_method=PUT" method="post">
-            <input type="text" name="itemDetails[title]" value="<%= item.title %>">
-            <br>
-            <br>
+    
+            <div class="mb-3">
+                <label for="" class="form-label">Title</label>
+                <input type="text" placeholder="Enter Title" name="itemDetails[title]" class="form-control" value="<%= item.title %>">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Description</label>
             <textarea name="itemDetails[description]" id="main-info" cols="30"
-                rows="10">  <%= item.description%>  </textarea>
+                rows="10" class="form-control">  <%= item.description%>  </textarea>
+            </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">Image Url</label>
+            <input type="text" placeholder="Enter Image URL" name="itemDetails[image][url]" class="form-control" value="<%= item.image.url %>">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Price</label>
+            <input type="number" placeholder="Enter Price" name="itemDetails[price]" class="form-control" value="<%= item.price %>">
+            </div>
+         
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label for="" class="form-label">Location</label>
+                <input type="text" placeholder="Enter Location" name="itemDetails[location]" class="form-control" value="<%= item.location%>">
+                </div>
+     
+                <div class="mb-3 col-md-6">
+                    <label for="" class="form-label">Country</label>
+                <input type="text" placeholder="Enter Country" name="itemDetails[country]" class="form-control" value="<%= item.country %>">
+                </div>
+            </div>
+
             <br>
             <br>
-            <input type="text" name="itemDetails[image][url]" value="<%= item.image.url %>">
-            <br>
-            <br>
-            <input type="number" name="itemDetails[price]" value="<%= item.price %>">
-            <br>
-            <br>
-            <input type="text" name="itemDetails[location]" value="<%= item.location%>">
-            <br>
-            <br>
-            <input type="text" name="itemDetails[country]" value="<%= item.country %>">
-            <br>
-            <br>
-            <button>Save</button>
+
+            <button class="btn btn-dark">Save</button>
         </form>
+
+        <%- include('./includes/footer') %>
+
+
+
+
+
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
