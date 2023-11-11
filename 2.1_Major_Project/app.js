@@ -7,6 +7,9 @@ const mongoose = require("mongoose");
 const Listing = require("./Models/listing.js");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
+const wrapAsync = require("./utils/wrapAsync.js");
+const ExpressError = require("./utils/ExpressError.js");
+
 
 const MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust';
 
@@ -53,50 +56,66 @@ app.get("/listings",async (req,res)=>{
 app.get("/listings/new",async (req,res)=>{
     res.render("newItem");
 });
-app.post("/listings",async (req,res)=>{
+app.post("/listings",wrapAsync(async(req,res,next)=>{
     // let {title,description,url,price,location,country} = req.body;
     let newItem = req.body.itemDetails;
-    console.log(newItem);
+    if(!newItem){
+        next(new ExpressError(400,"Send Valid Data In Listing."))
+    }
+    console.log("Current Item Is", newItem);
     const item = new Listing(newItem);
     await item.save();
 
     res.redirect("/listings");
-});
+}));
 
 
 //Show One (Read)
-app.get("/listings/:id",async (req,res)=>{
+app.get("/listings/:id",wrapAsync(async (req,res)=>{
     let {id} = req.params;
     let item = await Listing.findById(id);
     
     console.log(item);
     res.render("show",{item});
-});
+}));
 
 
-app.get("/listings/:id/edit",async (req,res)=>{
+app.get("/listings/:id/edit",wrapAsync(async (req,res)=>{
     let {id} = req.params;
     let item = await Listing.findById(id);
     console.log(item);
     res.render("edit",{item});
-});
+}));
 
-app.put("/listings/:id",async (req,res)=>{
+app.put("/listings/:id",wrapAsync(async (req,res)=>{
     let {id} = req.params;
+    if(!req.body.itemDetails){
+        next(new ExpressError(400,"Send Valid Data In Listing."))
+    }
     let updatedItem = await Listing.findByIdAndUpdate(id,{...req.body.itemDetails},{runValidators:true,new:true});
     console.log(updatedItem);
     res.redirect(`/listings/${id}`);
-});
+}));
 
-app.delete("/listings/:id",async (req,res)=>{
+app.delete("/listings/:id",wrapAsync(async (req,res)=>{
     let{id} = req.params;
     let deletedItem = await Listing.findByIdAndDelete(id);
     console.log(deletedItem);
     console.log("Deleted");
     res.redirect("/listings");
+}));
+
+
+
+app.all("*",(req,res,next)=>{
+    next(new ExpressError(404,"Page Not Found."));
 });
 
-
+// Error Handling Middleware
+app.use((err,req,res,next)=>{
+    let {status = 500,message = "Something Went Wrong."} = err;
+    res.status(status).send(`<h1>${message}</h1>`);
+});
 
 app.listen(3000,()=>{
     console.log("Server is Listing On Port 3000.");

@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Edit</title>
+    <link rel="shortcut icon" href="/img/favicon.jpg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -48,36 +49,42 @@
             Edit Your Information
         </h1>
 
-        <form action="/listings/<%= item._id %>?_method=PUT" method="post">
+        <form action="/listings/<%= item._id %>?_method=PUT" method="post" novalidate class="needs-validation">
     
             <div class="mb-3">
                 <label for="" class="form-label">Title</label>
-                <input type="text" placeholder="Enter Title" name="itemDetails[title]" class="form-control" value="<%= item.title %>">
+                <input type="text" placeholder="Enter Title" name="itemDetails[title]" class="form-control" value="<%= item.title %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Description</label>
             <textarea name="itemDetails[description]" id="main-info" cols="30"
-                rows="10" class="form-control">  <%= item.description%>  </textarea>
+                rows="10" class="form-control" required><%= item.description.trim()%></textarea>
+                <div class="invalid-feedback">
+                    Looks bad!
+                  </div>
             </div>
             
             <div class="mb-3">
                 <label for="" class="form-label">Image Url</label>
-            <input type="text" placeholder="Enter Image URL" name="itemDetails[image][url]" class="form-control" value="<%= item.image.url %>">
+            <input type="text" placeholder="Enter Image URL" name="itemDetails[image][url]" class="form-control" value="<%= item.image.url %>" required>
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Price</label>
-            <input type="number" placeholder="Enter Price" name="itemDetails[price]" class="form-control" value="<%= item.price %>">
+            <input type="number" placeholder="Enter Price" name="itemDetails[price]" class="form-control" value="<%= item.price %>" required>
             </div>
          
             <div class="row">
                 <div class="mb-3 col-md-6">
                     <label for="" class="form-label">Location</label>
-                <input type="text" placeholder="Enter Location" name="itemDetails[location]" class="form-control" value="<%= item.location%>">
+                <input type="text" placeholder="Enter Location" name="itemDetails[location]" class="form-control" value="<%= item.location%>" required>
                 </div>
      
                 <div class="mb-3 col-md-6">
                     <label for="" class="form-label">Country</label>
-                <input type="text" placeholder="Enter Country" name="itemDetails[country]" class="form-control" value="<%= item.country %>">
+                <input type="text" placeholder="Enter Country" name="itemDetails[country]" class="form-control" value="<%= item.country %>" required>
                 </div>
             </div>
 
@@ -103,8 +110,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-        <script>
-        </script>
+        <script src="/JS/common.js"></script>
 </body>
 
 </html>
