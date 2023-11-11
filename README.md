@@ -9,4 +9,8 @@
 📖📚Read About [REST](./1.5_REST/README.md)🚀    <br>
 📖📚Read About [Database](./1.6_Database/README.md)🚀    <br>
 📖📚Read About [CRUD DB with REST](./1.7_DB_CRUD/README.md)🚀    <br>
+📖📚Read About [MongoDB & Mongoose](./1.8_MongoDB/README.md)🚀    <br>
+📖📚Read About [CRUD Operations MongoDB & Mongoose](./1.9_DB_CRUD/README.md)🚀    <br>
+📖📚Read About [Major Project Details](./2.1_Major_Project/README.md)🚀    <br>
+📖📚Read About [Middlewares & Error Handling](./2.1_Major_ProLearn/README.md)🚀    <br>
 
