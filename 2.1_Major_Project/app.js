@@ -9,6 +9,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
+const listingSchema = require("./SchemaValidation.js")
 
 
 const MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust';
@@ -38,6 +39,23 @@ app.engine("ejs",ejsMate);
 
 
 
+const validateListingData = (req,res,next)=>{
+    // JOI Validation Used Here
+    let {error} = listingSchema.validate(req.body);
+    console.log(error);
+    if(error){
+        // throw new ExpressError(400, error);
+        let errMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400, errMsg);
+    }
+    else{
+        next();
+    }
+}
+
+
+
+
 //Endpoints (Routes)
 
 app.get("/",(req,res)=>{
@@ -56,13 +74,8 @@ app.get("/listings",async (req,res)=>{
 app.get("/listings/new",async (req,res)=>{
     res.render("newItem");
 });
-app.post("/listings",wrapAsync(async(req,res,next)=>{
-    // let {title,description,url,price,location,country} = req.body;
-    let newItem = req.body.itemDetails;
-    if(!newItem){
-        next(new ExpressError(400,"Send Valid Data In Listing."))
-    }
-    console.log("Current Item Is", newItem);
+app.post("/listings",validateListingData,wrapAsync(async(req,res,next)=>{
+
     const item = new Listing(newItem);
     await item.save();
 
@@ -113,9 +126,9 @@ app.all("*",(req,res,next)=>{
 
 // Error Handling Middleware
 app.use((err,req,res,next)=>{
-    let {statusCode = 500,message = "Something Went Wrong."} = err;
+    let {status = 500,message = "Something Went Wrong."} = err;
     // res.status(status).send(`<h1>${message}</h1>`);
-    res.status(statusCode).render("error.ejs",{message});
+    res.status(status).render("error.ejs",{message});
 });
 
 app.listen(3000,()=>{

@@ -24,13 +24,8 @@
 
 <body>
 
-    <h1>Hello Everyone</h1>
-
-    <% for(chat of chats) {%>
-        <h1>Sent By <%= chat.from %> To <%=  chat.to %> and msg is : <%= chat.msg %></h1>
-        <hr>
-        <br>
-    <% } %>
+    <h1><%= chat.id %></h1>
+    <p><%= chat.from %> to <%= chat.to %> and message is <%= chat.msg %></p>
     <script>
     </script>
 </body>

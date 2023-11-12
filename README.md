@@ -12,5 +12,5 @@
 📖📚Read About [MongoDB & Mongoose](./1.8_MongoDB/README.md)🚀    <br>
 📖📚Read About [CRUD Operations MongoDB & Mongoose](./1.9_DB_CRUD/README.md)🚀    <br>
 📖📚Read About [Major Project Details](./2.1_Major_Project/README.md)🚀    <br>
-📖📚Read About [Middlewares & Error Handling](./2.1_Major_ProLearn/README.md)🚀    <br>
+📖📚Read About [Middlewares & Error Handling](./2.1_Major_ProLearn/Middleware_and_ErrHandling/README.md)🚀    <br>
 

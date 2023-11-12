@@ -47,9 +47,31 @@ Main or Sara control screen layout or code structure ka  boilerplate vali file k
 
 
 
+# JOI Package used for validation
 
+```javascript
+app.post("/listings",wrapAsync(async(req,res,next)=>{
+  /*
+    let {title,description,url,price,location,country} = req.body;
+    let newItem = req.body.itemDetails;
+    if(!newItem){
+        throw new ExpressError(400,"Send Valid Data In Listing.");
+    }
+    console.log("Current Item Is", newItem);
+  */
+    // JOI Validation Used Here
+    let result = listingSchema.validate(req.body);
+    console.log(result);
+    if(result.error){
+        throw new ExpressError(400, result.error);
+    }
 
+    const item = new Listing(newItem);
+    await item.save();
 
+    res.redirect("/listings");
+}));
+```
 
 
 <br><br>
