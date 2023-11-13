@@ -9,7 +9,8 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-const listingSchema = require("./SchemaValidation.js")
+const {listingSchema,reviewSchema} = require("./SchemaValidation.js")
+const Review = require("./Models/review.js");
 
 
 const MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust';
@@ -54,6 +55,19 @@ const validateListingData = (req,res,next)=>{
 }
 
 
+const validateReviews = (req,res,next)=>{
+    let {error} = reviewSchema.validate(req.body);
+    console.log(error);
+    if(error){
+        let errMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400, errMsg);
+    }
+    else{
+        next();
+    }
+}
+
+
 
 
 //Endpoints (Routes)
@@ -76,7 +90,7 @@ app.get("/listings/new",async (req,res)=>{
 });
 app.post("/listings",validateListingData,wrapAsync(async(req,res,next)=>{
 
-    const item = new Listing(newItem);
+    const item = new Listing(req.body.itemDetails);
     await item.save();
 
     res.redirect("/listings");
@@ -86,13 +100,30 @@ app.post("/listings",validateListingData,wrapAsync(async(req,res,next)=>{
 //Show One (Read)
 app.get("/listings/:id",wrapAsync(async (req,res)=>{
     let {id} = req.params;
-    let item = await Listing.findById(id);
+    let item = await Listing.findById(id).populate("reviews");
     
     console.log(item);
     res.render("show",{item});
 }));
 
 
+// SET REVIEW
+app.post("/listings/:id/reviews",validateReviews, wrapAsync(async(req,res)=>{
+    let listing = await Listing.findById(req.params.id);
+    let newReview = new Review(req.body.review);
+
+    listing.reviews.push(newReview);
+
+    let res1 = await newReview.save();
+    let res2 = await listing.save();
+    // console.log(res1,res2);
+
+    console.log("New Review Saved.");
+    res.redirect(`/listings/${listing._id}`);
+}));
+
+
+// EDIT
 app.get("/listings/:id/edit",wrapAsync(async (req,res)=>{
     let {id} = req.params;
     let item = await Listing.findById(id);
@@ -110,6 +141,8 @@ app.put("/listings/:id",wrapAsync(async (req,res)=>{
     res.redirect(`/listings/${id}`);
 }));
 
+
+// DELETE
 app.delete("/listings/:id",wrapAsync(async (req,res)=>{
     let{id} = req.params;
     let deletedItem = await Listing.findByIdAndDelete(id);
