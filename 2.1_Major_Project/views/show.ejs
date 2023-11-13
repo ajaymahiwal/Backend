@@ -98,6 +98,13 @@
         .form-range{
             width: 100%;
         }
+        .review-card{
+            border: 2px solid black !important;
+            margin: 1rem;
+        }
+        .main-cards{
+            justify-content: center;
+        }
     </style>
          <link rel="stylesheet" href="/CSS/common.css">   
 
@@ -148,14 +155,26 @@
         </form>
         </div>
 
+
         <div class="rating-section">
-            <h3>All Reviews</h3>
-            <ul>
+        <h3>All Reviews</h3>
+        <div class="row main-cards">
             <% for(review of item.reviews) {%>
-                <li>   <%= review.comment %>   </li>
+            <div class="card col-md-3 review-card">
+                <div class="card-body ">
+                    <h3 class="card-title"> User Name </h3>
+                    <p class="card-text">   <%= review.comment %>   </p>
+                    <p class="card-text">   <%= review.rating%> Star   </p>
+                    <form action="/listings/<%=item._id%>/reviews/<%=review._id%>?_method=DELETE" method="post">
+                        <button class="btn btn-outline-dark">Delete</button>
+                    </form>
+                </div>
+            </div>
             <% } %>
-            </ul>
         </div>
+    </div>
+
+
 
 
         <%-include('./includes/footer.ejs')%>

@@ -2,6 +2,11 @@
 
 
 const mongoose = require("mongoose");
+const Review = require("./review.js");
+
+
+
+
 
 const listingSchema = new mongoose.Schema({
   title: {
@@ -33,6 +38,18 @@ const listingSchema = new mongoose.Schema({
     }
   ]
 });
+
+
+
+// Mongoose Middleware jab listing delete krege to uske baad jo review hoge DB mein vo bhi delete ho jayege
+listingSchema.post("findOneAndDelete", async(listing)=>{
+  if(listing){
+    await Review.deleteMany({_id: {$in: listing.reviews}});
+  }
+});
+
+
+
 
 const Listing = mongoose.model("Listing", listingSchema);
 module.exports = Listing;

@@ -107,21 +107,6 @@ app.get("/listings/:id",wrapAsync(async (req,res)=>{
 }));
 
 
-// SET REVIEW
-app.post("/listings/:id/reviews",validateReviews, wrapAsync(async(req,res)=>{
-    let listing = await Listing.findById(req.params.id);
-    let newReview = new Review(req.body.review);
-
-    listing.reviews.push(newReview);
-
-    let res1 = await newReview.save();
-    let res2 = await listing.save();
-    // console.log(res1,res2);
-
-    console.log("New Review Saved.");
-    res.redirect(`/listings/${listing._id}`);
-}));
-
 
 // EDIT
 app.get("/listings/:id/edit",wrapAsync(async (req,res)=>{
@@ -150,6 +135,43 @@ app.delete("/listings/:id",wrapAsync(async (req,res)=>{
     console.log("Deleted");
     res.redirect("/listings");
 }));
+
+
+
+
+
+
+// POST REVIEW
+// SET REVIEW
+app.post("/listings/:id/reviews",validateReviews, wrapAsync(async(req,res)=>{
+    let listing = await Listing.findById(req.params.id);
+    let newReview = new Review(req.body.review);
+
+    listing.reviews.push(newReview);
+
+    let res1 = await newReview.save();
+    let res2 = await listing.save();
+    // console.log(res1,res2);
+
+    console.log("New Review Saved.");
+    res.redirect(`/listings/${listing._id}`);
+}));
+
+
+// DELETE REVIEW
+app.delete("/listings/:id/reviews/:reviewId",wrapAsync(async(req,res)=>{
+    let {id,reviewId} = req.params;
+
+    await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});
+    await Review.findByIdAndDelete(reviewId);
+
+    res.redirect(`/listings/${id}`);
+}));
+
+
+
+
+
 
 
 
