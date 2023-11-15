@@ -86,7 +86,17 @@
 <body>
     <%-include('./includes/navbar.ejs')%>
 
+        <% if (successMsg && successMsg.length){ %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%= successMsg %>  
+              </div>
+        <% } %>
 
+        <% if (errorMsg && errorMsg.length){ %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= errorMsg %>  
+              </div>
+        <% } %>
         <h1>All Places List</h1>
 
         <!-- <a href="/listings/new" class="btn">Create New Listing</a> -->

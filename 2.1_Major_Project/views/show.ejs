@@ -113,6 +113,13 @@
 <body>
     <%-include('./includes/navbar.ejs')%>
 
+    <% if (successMsg && successMsg.length){ %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= successMsg %>  
+          </div>
+    <% } %>
+
+
     
         <div class="card new-card">
             <h1>

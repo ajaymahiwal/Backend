@@ -45,8 +45,8 @@ route.get("/new",async (req,res)=>{
 route.post("/",validateListingData,wrapAsync(async(req,res,next)=>{
 
     const item = new Listing(req.body.itemDetails);
-    await item.save();
-
+    await item.save(); 
+    req.flash("success","New Listing Added !");
     res.redirect("/listings");
 }));
 
@@ -55,7 +55,10 @@ route.post("/",validateListingData,wrapAsync(async(req,res,next)=>{
 route.get("/:id",wrapAsync(async (req,res)=>{
     let {id} = req.params;
     let item = await Listing.findById(id).populate("reviews");
-    
+    if(!item){
+        req.flash("error","Listing You requested for does not exist !");
+        res.redirect("/listings");
+    }
     console.log(item);
     res.render("show",{item});
 }));
@@ -66,6 +69,10 @@ route.get("/:id",wrapAsync(async (req,res)=>{
 route.get("/:id/edit",wrapAsync(async (req,res)=>{
     let {id} = req.params;
     let item = await Listing.findById(id);
+    if(!item){
+        req.flash("error","Listing You requested for does not exist !");
+        res.redirect("/listings");
+    }
     console.log(item);
     res.render("edit",{item});
 }));
@@ -77,6 +84,8 @@ route.put("/:id",wrapAsync(async (req,res)=>{
     }
     let updatedItem = await Listing.findByIdAndUpdate(id,{...req.body.itemDetails},{runValidators:true,new:true});
     console.log(updatedItem);
+    req.flash("success","Listing Updated !");
+
     res.redirect(`/listings/${id}`);
 }));
 
@@ -87,6 +96,7 @@ route.delete("/:id",wrapAsync(async (req,res)=>{
     let deletedItem = await Listing.findByIdAndDelete(id);
     console.log(deletedItem);
     console.log("Deleted");
+    req.flash("success","Listing Deleted !");
     res.redirect("/listings");
 }));
 
