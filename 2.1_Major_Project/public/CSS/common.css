@@ -43,3 +43,11 @@ footer > *{
 .f-socail > *,.f-links > *{
     margin-right: 1rem;
 }
+
+
+
+
+/* For FLash Messages */
+.fade{
+    text-align: center;
+}

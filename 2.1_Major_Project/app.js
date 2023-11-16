@@ -6,12 +6,18 @@ const path = require("path");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-// const wrapAsync = require("./utils/wrapAsync.js");
+const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-const listing = require("./routes/listing.js");
-const review = require("./routes/review.js");
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./Models/user.js");
+
+
+const listingRouter = require("./routes/listing.js");
+const reviewRouter = require("./routes/review.js");
+const userRouter = require("./routes/user.js");
 
 
 const sessionOptions = {
@@ -26,6 +32,13 @@ const sessionOptions = {
 };
 app.use(session(sessionOptions));
 app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 app.use((req,res,next)=>{
     res.locals.successMsg = req.flash("success");
@@ -71,8 +84,20 @@ app.get("/",(req,res)=>{
 });
 
 
-app.use("/listings",listing);
-app.use("/listings/:id/reviews",review);
+app.use("/listings",listingRouter);
+app.use("/listings/:id/reviews",reviewRouter);
+app.use("/",userRouter);
+
+
+app.get("/demouser", wrapAsync(async(req,res)=>{
+    // let fakeUser = new User({
+    //     email:"demouser@gmail.com",
+    //     username:"demouser007",
+    // });
+
+    // let registeredUser = await User.register(fakeUser,"mypassword123"); // Convenience method to register a new user instance with a given password. Checks if username is unique.
+    res.send(registeredUser);
+}));
 
 
 
