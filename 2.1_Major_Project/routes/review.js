@@ -61,13 +61,13 @@ route.post("/",isLoggedIn, validateReviews, wrapAsync(async(req,res)=>{
 // DELETE REVIEW
 route.delete("/:reviewId",isLoggedIn, isReviewOwner, wrapAsync(async(req,res)=>{
     let {id,reviewId} = req.params;
-    console.log("i am at review route and delete method.");
+    console.log("i am at review route and delete method.And Review Deleted.");
     
     await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});
     await Review.findByIdAndDelete(reviewId);
     req.flash("success","Review Deleted !");
 
-    res.redirect(`/listings`);
+    res.redirect(`/listings/${id}`);
 }));
 
 
