@@ -15,9 +15,9 @@ const LocalStrategy = require("passport-local");
 const User = require("./Models/user.js");
 
 
-const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
-const userRouter = require("./routes/user.js");
+const listingRouter = require("./routes/listing.js");
+const userRouter = require("./routes/user.js"); 
 
 
 const sessionOptions = {
@@ -43,6 +43,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req,res,next)=>{
     res.locals.successMsg = req.flash("success");
     res.locals.errorMsg = req.flash("error");
+    res.locals.currUser = req.user;
     next();
 });
 
@@ -80,12 +81,12 @@ app.engine("ejs",ejsMate);
 //Endpoints (Routes)
 
 app.get("/",(req,res)=>{
-    res.render("index.ejs",{ layouts: false });
+    res.render("./list/index.ejs",{ layouts: false });
 });
 
 
-app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
+app.use("/listings",listingRouter);
 app.use("/",userRouter);
 
 
@@ -117,7 +118,7 @@ app.use((err,req,res,next)=>{
         req.flash("error","Listing You requested for does not exist !");
         res.redirect("/listings");
     }
-    res.status(status).render("error.ejs",{message});
+    res.status(status).render("./list/error.ejs",{message});
 });
 
 app.listen(3000,()=>{

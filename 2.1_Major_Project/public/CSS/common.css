@@ -51,3 +51,10 @@ footer > *{
 .fade{
     text-align: center;
 }
+
+.user-in-out{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    font-weight: bold;
+}

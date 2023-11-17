@@ -10,5 +10,15 @@
         <a class="nav-item nav-link" href="/listings">Show All Listings</a>
         <a class="nav-item nav-link" href="/listings/new">Create New Listing</a>
       </div>
+
+        <div class="user-in-out navbar-nav">
+        <% if (!currUser) { %>
+          <a class="nav-item nav-link" href="/signup">Sign Up</a>
+          <span>/</span>
+          <a class="nav-item nav-link" href="/login">Log In</a>
+        <% } else { %>
+          <a class="nav-item nav-link" href="/logout">Log Out</a>
+        <% } %>
+      </div>
     </div>
   </nav>

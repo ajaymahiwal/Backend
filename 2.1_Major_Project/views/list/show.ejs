@@ -111,11 +111,16 @@
 </head>
 
 <body>
-    <%-include('./includes/navbar.ejs')%>
+    <%-include('../includes/navbar.ejs')%>
 
     <% if (successMsg && successMsg.length){ %>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <%= successMsg %>  
+          </div>
+    <% } %>
+    <% if (errorMsg && errorMsg.length){ %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= errorMsg %>  
           </div>
     <% } %>
 
@@ -128,20 +133,25 @@
             <img src="<%= item.image.url %>" class="card-img-top" alt="item-img">
             
             <div class="card-body">
+              <p class="card-text">Owned By: <%= item.owner.username %> </p>
               <p class="card-text"> <%= item.description %> </p>
               <p class="card-text"> <%= item.location %>, <%= item.country %></p>
               <p class="card-text"> &#8377; <%= item.price.toLocaleString("en-IN")%> </p>
             </div>
           </div>
 
-        <div class="main-btns">
-            <a href="/listings/<%= item._id %>/edit" class="btn">Edit This Listing</a>
-        <form action="/listings/<%= item.id %>?_method=DELETE" method="post">
-            <button class="btn">Delete This Listing</button>
-        </form>
-        </div>
+        <% if (currUser && currUser._id.equals(item.owner._id)) { %>
+            <div class="main-btns">
+                <a href="/listings/<%= item._id %>/edit" class="btn">Edit This Listing</a>
+            <form action="/listings/<%= item.id %>?_method=DELETE" method="post">
+                <button class="btn">Delete This Listing</button>
+            </form>
+            </div>
+        <% } %>
 
-        <div class="rating-section">
+
+    <% if (currUser) { %>
+             <div class="rating-section">
             <hr>
             <h1>Leave a Review</h1>
             <hr>
@@ -161,7 +171,8 @@
             <button class="btn btn-outline-dark">Submit</button>
         </form>
         </div>
-
+        <% } %>
+ 
 
         <div class="rating-section">
         <h3>All Reviews</h3>
@@ -169,12 +180,15 @@
             <% for(review of item.reviews) {%>
             <div class="card col-md-3 review-card">
                 <div class="card-body ">
-                    <h3 class="card-title"> User Name </h3>
+                    <h3 class="card-title"> @<%= review.owner.username %> </h3>
                     <p class="card-text">   <%= review.comment %>   </p>
                     <p class="card-text">   <%= review.rating%> Star   </p>
-                    <form action="/listings/<%=item._id%>/reviews/<%=review._id%>?_method=DELETE" method="post">
-                        <button class="btn btn-outline-dark">Delete</button>
-                    </form>
+                    
+                    <% if (currUser && currUser._id.equals(review.owner._id)) { %>
+                        <form action="/listings/<%=item._id%>/reviews/<%=review._id%>?_method=DELETE" method="post">
+                            <button class="btn btn-outline-dark">Delete</button>
+                        </form>
+                    <% } %>
                 </div>
             </div>
             <% } %>
@@ -184,7 +198,7 @@
 
 
 
-        <%-include('./includes/footer.ejs')%>
+        <%-include('../includes/footer.ejs')%>
 
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
