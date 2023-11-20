@@ -1,0 +1,38 @@
+
+
+
+header{
+    background-color: rgba(137, 43, 226, 0.527);
+    padding: 2rem;
+    color: black;
+    font-weight: 500;
+    margin-bottom: 3vw;
+}
+
+nav ul{
+    display: flex;
+    column-gap: 2rem;
+}
+h1{
+    text-align: center;
+}
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+    font-size: 1.7rem;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

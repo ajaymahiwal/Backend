@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .list-img {
+            width: 20vw;
+            height: 20vw;
+            object-fit: cover;
+        }
+
+        .row {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        a{
+            text-decoration: none;
+            width: 30%;
+        }
+        .col {
+            border: 2px solid rgb(76, 0, 255);
+            /* width: 100%; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 3vw;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <%-include("../includes/navbar.ejs") %>
+
+    <h1>ALL Listings</h1>
+    <div class="row">
+    <% for(list of listing) { %>
+            <a href="/listings/<%= list._id %>" class="">
+            <div class="col">
+                <br>
+                    <img src="  <%= list.image.url %> " alt="" class="list-img">
+                    <br>
+                    <h3>
+                        <%= list.title %>
+                    </h3>
+                </div>
+            </a>
+            <% } %>
+        </div>
+
+</body>
+
+</html>

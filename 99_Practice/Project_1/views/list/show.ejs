@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+        h1{
+            text-align: center;
+        }
+        .list-img {
+            width: 100%;
+            height: 30vw;
+            object-fit: cover;
+        }
+
+        .row{
+            margin-top: 2vw;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        .col{
+            border: 3px solid black;
+            width: 70%;
+        }
+        .btns{
+            width: 70%;
+            margin: 1rem auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        .btn{
+            padding: 0.7rem 3rem;
+            background-color: rgb(51, 231, 51);
+            font-size: 1.2rem;
+            border: none;
+            color: black;
+            margin-bottom: 5vw;
+        }
+        .btn:hover{
+            background-color: darkgray;
+        }
+        .del-btn{
+            background-color: red;
+        }
+        
+
+        .review-form{
+            width: 70%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .fields{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        input,label,textarea{
+            padding: 0.5rem 0;
+            width: 100%;
+        }
+        .review-btn{
+            margin-top: 2rem;
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <%-include("../includes/navbar.ejs") %>
+
+    <h1> <%= list.title %> </h1>
+
+    <div  class="row">
+        <div class="col">
+            <img src="  <%= list.image.url %> " alt="" class="list-img">
+        <br>
+        <h3> <%= list.title %> </h3>
+        <br>
+        <p>  <%= list.description %> </p>
+        <p> <b> &#8377; <%= list.price.toLocaleString("en-IN")%> </b> </p>
+        <p>  <%= list.location %>, <%= list.country %> </p>
+        </div>
+    </div>
+
+
+    <div class="btns">
+        <a href="/listings/<%= list._id %>/edit" class="btn">Edit</a>
+
+        <form action="/listings/<%= list._id %>?_method=DELETE" method="post">
+            <button class="btn del-btn">Delete</button>
+        </form>
+    </div>
+
+
+    <h1>Leave a Review</h1>
+    <form action="/listings/<%= list._id %>/review" method="post" class="review-form">
+        <div class="fields">
+            <label for="star">Give Points Out Of 5</label>
+            <input type="number" name="review[rating]" id="star" min="1" max="5">
+        </div>
+        <div class="fields">
+            <label for="comment">Comment:</label>
+            <textarea name="review[comment]" id="comment" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn review-btn">Save</button>
+    </form>
+<% for( review of list.reviews ) { %>
+
+    <h1>  :<%= review.rating %>  </h1>
+    <h1>  :<%= review.comment %>  </h1>
+    <hr>
+<% } %>
+
+</body>
+
+</html>

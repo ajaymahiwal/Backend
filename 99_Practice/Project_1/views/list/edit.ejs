@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        form{
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .fields{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1vw;
+        }
+        label,input,textarea{
+            width: 100%;
+            padding-block: 0.5rem;
+            font-size: 1.2rem;
+        }
+        .loca-fields{
+            width: 100%;
+            display: flex;
+            flex-wrap: nowrap;
+            column-gap: 2rem;
+        }
+        label{
+            font-weight: bold;
+        }
+        .btn{
+            padding: .6rem 2rem;
+            background-color: rgb(47, 255, 82);
+            border: none;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            width: 50%;
+            /* transition: all 1s ease; */
+        }
+        .btn:hover{
+            background-color: dimgray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <%-include("../includes/navbar.ejs") %>
+    
+    <form action="/listings/<%= list._id %>" method="post">
+        <div class="fields">
+            <label for="title">Title:</label>
+            <input type="text" name="listing[title]" id="title" value="<%= list.title %>" required>
+        </div>
+        <div class="fields">
+            <label for="descp">Description:</label>
+            <textarea name="listing[description]" id="descp"  rows="5" required><%= list.description %></textarea>
+        </div>
+        <div class="fields">
+            <label for="url">Image URL:</label>
+            <input type="text" name="listing[image.url]" id="url" value="<%= list.image.url%>" required>
+        </div>
+        <div class="fields">
+            <label for="price">Price:</label>
+            <input type="number" name="listing[price]" id="price" value="<%= list.price %>" required>
+        </div>
+        <div class="loca-fields">
+            <div class="fields">
+                <label for="title">Location:</label>
+                <input type="text" name="listing[location]" id="title" value="<%= list.location %>" required>
+            </div>
+            <div class="fields">
+                <label for="title">Country:</label>
+                <input type="text" name="listing[country]" id="title" value="<%= list.country %>" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn">Update</button>
+    </form>
+
+</body>
+
+</html>
