@@ -52,7 +52,9 @@ app.use((req, res, next) => {
     next();
 });
 
-const MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust';
+// const MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust';
+const MONGO_URL = '
+mongodb+srv://ajaymahiwal:AMRFS6HcdWEUmoGw@cluster0.2tdstsm.mongodb.net/?retryWrites=true&w=majority';
 async function main() {
     await mongoose.connect(MONGO_URL);
 }
