@@ -1,217 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= item.title %></title>
-    <link rel="shortcut icon" href="/img/favicon.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/favicon.jpg" type="image/x-icon" />
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
 
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-        }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
     </style>
-</head>
+  </head>
 
-<!DOCTYPE html>
-<html lang="en">
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Show</title>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous"
+      />
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      />
+      <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: Arial, Helvetica, sans-serif;
         }
 
         html,
         body {
-            width: 100%;
-            height: 100%;
+          width: 100%;
+          height: 100%;
         }
 
         .btn {
-            display: inline-block;
-            background-color: rgba(241, 38, 38, 0.89);
-            padding: 0.5rem 2rem;
-            font-size: 1.2rem;
-            text-decoration: none;
-            color: white;
-            margin: 2rem 0;
+          display: inline-block;
+          background-color: rgba(241, 38, 38, 0.89);
+          padding: 0.5rem 2rem;
+          font-size: 1.2rem;
+          text-decoration: none;
+          color: white;
+          margin: 2rem 0;
         }
 
-        .new-card{
-            margin: 0 auto;
-            width: 80%;
+        .new-card {
+          margin: 0 auto;
+          width: 80%;
         }
-        .new-card img{
+        .new-card img {
+          width: 100%;
+          height: 70vh;
+          /* object-fit: fill; */
+          object-fit: cover;
+        }
+        .new-card h1 {
+          padding: 0 1rem;
+        }
+        .main-btns {
+          display: flex;
+          justify-content: space-around;
+        }
+        @media (width<=600px) {
+          .main-btns {
+            flex-direction: column;
+          }
+          .btn {
             width: 100%;
-            height: 70vh;
-            /* object-fit: fill; */
-            object-fit: cover;
+          }
         }
-        .new-card h1{
-            padding: 0 1rem;
-        }
-        .main-btns{
-            display: flex;
-            justify-content: space-around;
-        }
-        @media(width<=600px){
-            .main-btns{
-                flex-direction: column;
-            }
-            .btn{
-                width: 100%;
-            }
-        }
-        .card{
-            border: none !important;
+        .card {
+          border: none !important;
         }
 
-        .rating-section{
-            width: 80%;
-            margin: 0 auto;
+        .rating-section {
+          width: 80%;
+          margin: 0 auto;
         }
-        .form-range{
-            width: 100%;
+        .form-range {
+          width: 100%;
         }
-        .review-card{
-            border: 2px solid black !important;
-            margin: 1rem;
+        .review-card {
+          border: 2px solid black !important;
+          margin: 1rem;
         }
-        .main-cards{
-            justify-content: center;
+        .main-cards {
+          justify-content: center;
         }
-    </style>
-         <link rel="stylesheet" href="/CSS/common.css">   
 
-</head>
+        .comment {
+          font-size: 1.4rem;
+          font-weight: 500;
+        }
 
-<body>
-    <%-include('../includes/navbar.ejs')%>
+        #map {
+          width: 100%;
+          height: 300px;
+        }
+        .map-col {
+          width: 80%;
+          margin: 2vw auto;
+          display: flex;
+          flex-direction: column;
+        }
+      </style>
+      <link rel="stylesheet" href="/CSS/common.css" />
+      <link rel="stylesheet" href="/CSS/rating.css" />
 
-    <% if (successMsg && successMsg.length){ %>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <%= successMsg %>  
-          </div>
-    <% } %>
-    <% if (errorMsg && errorMsg.length){ %>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <%= errorMsg %>  
-          </div>
-    <% } %>
+      <link
+        href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css"
+        rel="stylesheet"
+      />
+      <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    </head>
 
+    <body>
+      <%-include('../includes/navbar.ejs')%> <% if (successMsg &&
+      successMsg.length){ %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= successMsg %>
+      </div>
+      <% } %> <% if (errorMsg && errorMsg.length){ %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= errorMsg %>
+      </div>
+      <% } %>
 
-    
-        <div class="card new-card">
-            <h1>
-                <%= item.title %>
-            </h1>
-            <img src="<%= item.image.url %>" class="card-img-top" alt="item-img">
-            
-            <div class="card-body">
-              <p class="card-text">Owned By: <%= item.owner.username %> </p>
-              <p class="card-text"> <%= item.description %> </p>
-              <p class="card-text"> <%= item.location %>, <%= item.country %></p>
-              <p class="card-text"> &#8377; <%= item.price.toLocaleString("en-IN")%> </p>
-            </div>
-          </div>
+      <div class="card new-card">
+        <h1><%= item.title %></h1>
+        <img src="<%= item.image.url %>" class="card-img-top" alt="item-img" />
 
-        <% if (currUser && currUser._id.equals(item.owner._id)) { %>
-            <div class="main-btns">
-                <a href="/listings/<%= item._id %>/edit" class="btn">Edit This Listing</a>
-            <form action="/listings/<%= item.id %>?_method=DELETE" method="post">
-                <button class="btn">Delete This Listing</button>
-            </form>
-            </div>
-        <% } %>
-
-
-    <% if (currUser) { %>
-             <div class="rating-section">
-            <hr>
-            <h1>Leave a Review</h1>
-            <hr>
-        <form action="/listings/<%= item._id %>/reviews" method="post" novalidate class="needs-validation">
-            <div>
-                <label for="rating" class="form-label">Rating:</label>
-                <input type="range" name="review[rating]" id="rating" min="1" max="5" step="1" class="form-range">
-            </div>
-            <div>
-                <label for="comment" class="form-label">Comment:</label>
-                <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control" required></textarea>
-                <div class="invalid-feedback">
-                    please add some comments for review !
-                </div>
-            </div>
-
-            <button class="btn btn-outline-dark">Submit</button>
-        </form>
+        <div class="card-body">
+          <p class="card-text">Owned By: <%= item.owner.username %></p>
+          <p class="card-text"><%= item.description %></p>
+          <p class="card-text"><%= item.location %>, <%= item.country %></p>
+          <p class="card-text">
+            &#8377; <%= item.price.toLocaleString("en-IN")%>
+          </p>
         </div>
-        <% } %>
- 
+      </div>
 
-        <div class="rating-section">
+      <% if (currUser && currUser._id.equals(item.owner._id)) { %>
+      <div class="main-btns">
+        <a href="/listings/<%= item._id %>/edit" class="btn"
+          >Edit This Listing</a
+        >
+        <form action="/listings/<%= item.id %>?_method=DELETE" method="post">
+          <button class="btn">Delete This Listing</button>
+        </form>
+      </div>
+      <% } %> <% if (currUser) { %>
+      <div class="rating-section">
+        <hr />
+        <h1>Leave a Review</h1>
+        <hr />
+        <form
+          action="/listings/<%= item._id %>/reviews"
+          method="post"
+          novalidate
+          class="needs-validation"
+        >
+          <div>
+            <!-- <label for="rating" class="form-label">Rating:</label>
+                <input type="range" name="review[rating]" id="rating" min="1" max="5" step="1" class="form-range"> -->
+            <fieldset class="starability-slot">
+              <legend>Rating:</legend>
+              <input
+                type="radio"
+                id="no-rate"
+                class="input-no-rate"
+                name="review[rating]"
+                value="1"
+                checked
+                aria-label="No rating."
+              />
+              <input
+                type="radio"
+                id="first-rate1"
+                name="review[rating]"
+                value="1"
+              />
+              <label for="first-rate1" title="Terrible">1 star</label>
+              <input
+                type="radio"
+                id="first-rate2"
+                name="review[rating]"
+                value="2"
+              />
+              <label for="first-rate2" title="Not good">2 stars</label>
+              <input
+                type="radio"
+                id="first-rate3"
+                name="review[rating]"
+                value="3"
+              />
+              <label for="first-rate3" title="Average">3 stars</label>
+              <input
+                type="radio"
+                id="first-rate4"
+                name="review[rating]"
+                value="4"
+              />
+              <label for="first-rate4" title="Very good">4 stars</label>
+              <input
+                type="radio"
+                id="first-rate5"
+                name="review[rating]"
+                value="5"
+              />
+              <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+          </div>
+          <div>
+            <label for="comment" class="form-label comment">Comment:</label>
+            <textarea
+              name="review[comment]"
+              id="comment"
+              cols="30"
+              rows="5"
+              class="form-control"
+              required
+            ></textarea>
+            <div class="invalid-feedback">
+              please add some comments for review !
+            </div>
+          </div>
+
+          <button class="btn btn-outline-dark">Submit</button>
+        </form>
+      </div>
+      <% } %> <% if(item.reviews.length > 0) {%>
+      <div class="rating-section">
         <h3>All Reviews</h3>
         <div class="row main-cards">
-            <% for(review of item.reviews) {%>
-            <div class="card col-md-3 review-card">
-                <div class="card-body ">
-                    <h3 class="card-title"> @<%= review.owner.username %> </h3>
-                    <p class="card-text">   <%= review.comment %>   </p>
-                    <p class="card-text">   <%= review.rating%> Star   </p>
-                    
-                    <% if (currUser && currUser._id.equals(review.owner._id)) { %>
-                        <form action="/listings/<%=item._id%>/reviews/<%=review._id%>?_method=DELETE" method="post">
-                            <button class="btn btn-outline-dark">Delete</button>
-                        </form>
-                    <% } %>
-                </div>
+          <% for(review of item.reviews) {%>
+          <div class="card col-md-3 review-card">
+            <div class="card-body">
+              <h3 class="card-title">@<%= review.owner.username %></h3>
+              <p class="card-text"><%= review.comment %></p>
+              <p
+                class="starability-result"
+                data-rating="<%= review.rating%>"
+              ></p>
+
+              <% if (currUser && currUser._id.equals(review.owner._id)) { %>
+              <form
+                action="/listings/<%=item._id%>/reviews/<%=review._id%>?_method=DELETE"
+                method="post"
+              >
+                <button class="btn btn-outline-dark">Delete</button>
+              </form>
+              <% } %>
             </div>
-            <% } %>
+          </div>
+          <% } %>
         </div>
-    </div>
+      </div>
+      <%}%>
+
+      <div class="map-col">
+        <h1>Where You'll Be</h1>
+        <div id="map"></div>
+      </div>
+
+      <%-include('../includes/footer.ejs')%>
+
+      <script
+        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"
+      ></script>
+
+      <script src="/JS/common.js"></script>
+      <script>
+                // TO MAKE THE MAP APPEAR YOU MUST
+                // ADD YOUR ACCESS TOKEN FROM
+                // https://account.mapbox.com
+
+                let coordinates = <%-JSON.stringify(item.geometry.coordinates)%>
+                console.log(coordinates);
+
+                mapboxgl.accessToken = "<%= process.env.MAP_TOKEN%>";
+                const map = new mapboxgl.Map({
+                  container: "map", // container ID
+                //   Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+                  style: "mapbox://styles/mapbox/streets-v12", // style URL
+                  center: coordinates, // starting position [lng, lat]
+                  zoom: 9, // starting zoom
+                });
 
 
+                let listingg = <%-JSON.stringify(item)%>;
+                console.log(listingg.title);
+            
 
-
-        <%-include('../includes/footer.ejs')%>
-
-
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-
-            <script src="/JS/common.js"></script>
-</body>
-
+                // Create a default Marker, colored black, rotated 45 degrees.
+                const marker2 = new mapboxgl.Marker({ color: "red", rotation: 0 })
+                  .setLngLat(coordinates)
+                  .setPopup(
+                    new mapboxgl.Popup({offset: 10}).setHTML(
+                        `<h3>${listingg.title}</h3><p>Exact Location Will Be Provided After Booking !!</p>`)
+                  )
+                  .addTo(map);
+      </script>
+    </body>
+  </html>
 </html>

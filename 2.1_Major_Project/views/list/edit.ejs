@@ -49,7 +49,7 @@
             Edit Your Information
         </h1>
 
-        <form action="/listings/<%= item._id %>?_method=PUT" method="post" novalidate class="needs-validation">
+        <form action="/listings/<%= item._id %>?_method=PUT" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
     
             <div class="mb-3">
                 <label for="" class="form-label">Title</label>
@@ -66,10 +66,14 @@
                     Looks bad!
                   </div>
             </div>
-            
+            <div  class="mb-3">
+
+                <img src="  <%= OrgImgUrl %> " alt="">
+
+            </div>
             <div class="mb-3">
                 <label for="" class="form-label">Image Url</label>
-            <input type="text" placeholder="Enter Image URL" name="itemDetails[image][url]" class="form-control" value="<%= item.image.url %>" required>
+            <input type="file" placeholder="Upload New Image" name="itemDetails[image][url]" class="form-control" value="<%= item.image.url %>">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Price</label>

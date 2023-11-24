@@ -7,7 +7,10 @@ const {listingSchema} = require("../SchemaValidation.js")
 const {isLoggedIn,isOwner} = require("../middlewares/middleW.js");
 
 const listingController = require("../controllers/listings.js");
-
+const multer  = require('multer');
+const {storage} = require("../cloudConfig.js");
+const upload = multer({ storage });
+    
 
 
 const validateListingData = (req,res,next)=>{
@@ -30,9 +33,13 @@ router
     .route("/")
     .get(wrapAsync(listingController.index)) //Show All listing
     .post(isLoggedIn,
+        upload.single('itemDetails[image][url]'),
         validateListingData,
         wrapAsync(listingController.createListing)) 
-    
+
+        // .post(upload.single('itemDetails[image][url]'),(req,res)=>{
+        // res.send(req.file);
+        // })
 
 router.get("/new",
             isLoggedIn,
@@ -46,6 +53,8 @@ router
     .put(
         isLoggedIn,
         isOwner,
+        upload.single('itemDetails[image][url]'),
+        validateListingData,
         wrapAsync(listingController.updateListing))
     .delete(
         isLoggedIn,
