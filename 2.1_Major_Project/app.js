@@ -14,6 +14,7 @@ const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -25,8 +26,37 @@ const listingRouter = require("./routes/listing.js");
 const userRouter = require("./routes/user.js");
 
 
+// const MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust';
+const dbUrl = process.env.ATLASDB_URL;
+async function main() {
+    await mongoose.connect(dbUrl);
+}
+
+main().then(() => {
+        console.log("Connected With WanderLust DB");
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
+
+
+const store = MongoStore.create({
+    mongoUrl:dbUrl,
+    crypto:{
+        secret: process.env.SECRET,
+    },
+    touchAfter: 24 * 3600, // 24 Hours = 1 Day
+});
+
+store.on("error",()=>{
+    console.log("Error in MongoSession Store",error);
+});
+
 const sessionOptions = {
-    secret: "mysecretcode",
+    // store : store,
+    store,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -51,23 +81,6 @@ app.use((req, res, next) => {
     res.locals.currUser = req.user;
     next();
 });
-
-// const MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust';
-const MONGO_URL = '
-mongodb+srv://ajaymahiwal:AMRFS6HcdWEUmoGw@cluster0.2tdstsm.mongodb.net/?retryWrites=true&w=majority';
-async function main() {
-    await mongoose.connect(MONGO_URL);
-}
-
-main()
-    .then(() => {
-        console.log("Connected With WanderLust DB");
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-
-
 
 
 //Middlewares
