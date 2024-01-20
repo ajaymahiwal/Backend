@@ -25,7 +25,7 @@ module.exports.createListing = async (req, res, next) => {
 
 
     console.log("req.body.itemDetails");
-    console.log(req.body.itemDetails);
+    console.log(req.body.itemDetails); 
     const item = new Listing(req.body.itemDetails);
     item.owner = req.user._id;
 

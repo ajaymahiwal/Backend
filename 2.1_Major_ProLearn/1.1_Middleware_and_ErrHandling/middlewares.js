@@ -110,8 +110,20 @@ app.use((err,req,res,next)=>{
 
 
 // ager khi bhi specfic route mila hi nhi to last mein ye execute hojayega
+
+/*
 app.use((req,res)=>{
     res.status(404).send("Page Not Found.");
 });
+*/
+
+//Or
+
+ app.all("*",(req,res)=>{
+    res.status(404).send("Page Not Found.");
+});
+
+
+
 //Start server
 app.listen(3000);

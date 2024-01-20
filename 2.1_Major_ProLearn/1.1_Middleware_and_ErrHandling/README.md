@@ -26,14 +26,14 @@ app.use((req,res,next)=>{
 });
 ```
 
-`app.use()` mein ager path define nhi kerte to ye sab path k liye execute kerega.
+`app.use()` mein ager path define nhi kerte to ye sab path k liye execute kerega or har http methods k liye nhi jse get, post, put, patch, delete.
 
 ```javascript
 app.use("/list",(req,res,next)=>{
     //Block Of Code
 });
 ```
-This Middleware only work with path `/list`.
+This Middleware only work with path `/list` route and all http methods.
 
 ----
 ```javascript
@@ -450,3 +450,48 @@ To summarize:
 
 - `next()` passes control to the next regular middleware or route handler in sequence.
 - `next(err)` is used to trigger error handling, and it skips regular middleware to execute the next error-handling middleware in the stack.
+
+
+
+    **Handling Async Errors**
+
+When dealing with synchronous code and throwing an error within a middleware function, Express will automatically catch that error and pass it to the error-handling middleware. In this case, you don't need to explicitly call `next`.
+
+Here's an example:
+
+```javascript
+app.use((req, res, next) => {
+  // Synchronous code
+  if (someErrorCondition) {
+    // Express will handle this error automatically
+    throw new Error('Some error occurred');
+  }
+  // Continue processing if no error
+  next();
+});
+```
+
+In the above example, if `someErrorCondition` is true, throwing an error will be automatically caught by Express, and it will skip to the error-handling middleware.
+
+Now, in asynchronous code, if you're using `async/await`, you need to handle errors explicitly using `try/catch` and call `next` with the error if one occurs:
+
+```javascript
+app.use(async (req, res, next) => {
+  try {
+    // Asynchronous code
+    const result = await someAsyncFunction();
+    // Continue processing if no error
+    next();
+  } catch (error) {
+    // Handle the asynchronous error
+    next(error);
+  }
+});
+```
+
+In this asynchronous case, calling `next(error)` is necessary because Express won't automatically catch errors thrown in asynchronous code. It ensures that the error is properly propagated through the middleware stack and reaches the error-handling middleware.
+
+So, in summary, with synchronous code, throwing an error is automatically handled by Express, but in asynchronous code, you need to explicitly call `next(error)` to handle errors properly.
+
+
+And that's why we `wrapAsync` function for async routes body methods because there will no need to write try catch block if we use this it will handle the errors because it will return a promise because we will pass a async function in this as a parameter. and every async function return a promise and then we can catch that error and can call the next(err) which we trigger the error handling middleware.
