@@ -495,3 +495,47 @@ So, in summary, with synchronous code, throwing an error is automatically handle
 
 
 And that's why we `wrapAsync` function for async routes body methods because there will no need to write try catch block if we use this it will handle the errors because it will return a promise because we will pass a async function in this as a parameter. and every async function return a promise and then we can catch that error and can call the next(err) which we trigger the error handling middleware.
+
+
+```javascript
+function wrapAsync(fn) {
+    return function (req, res, next) {
+      fn(req, res, next).catch((err) => next(err));
+    };
+  }
+```
+
+**Note: fn is a asyncronous function. wrapAsync is alternative way to handle async errors at the place of try-catch block.**
+Example: async error handling using wrapAsync
+
+```javascript
+app.get("/chats/:id",wrapAsync(async (req,res,next)=>{
+  let{id} = req.params;
+    let chat = await Chat.findById(id);
+    //some error occur because some id not found in db.
+    if(!chat){
+      throw new ExpressError(404,"Chat Not Found for this ID");
+    }
+    res.render("show",{chat});
+}));
+```
+
+
+Example: async error handling using try-catch block
+
+```javascript
+app.get("/chats/:id",async (req,res,next)=>{
+    try{
+      let{id} = req.params;
+      let chat = await Chat.findById(id);
+    //some error occur because some id not found in db.
+      if(!chat){
+        throw new ExpressError(404,"Chat Not Found for this ID");
+      }
+      res.render("show",{chat});
+    }
+    catch(err){
+      return next(err);
+    }
+});
+```

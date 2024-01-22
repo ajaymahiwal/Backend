@@ -54,7 +54,7 @@ module.exports.showOneListing = async (req, res) => {
         path: "reviews",
         populate: {
             path: "owner",
-        },
+        }, 
     })
         .populate("owner");
 
